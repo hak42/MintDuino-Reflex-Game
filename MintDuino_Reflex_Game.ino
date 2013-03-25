@@ -1,10 +1,14 @@
-// MintDuino NoteBook 1 – Reflex Game version 7.0
+// MintDuino NoteBook 1 – Reflex Game version 8.0 - Four player version
 
 int ledGameLight = 7; // Digital Pin 7 for LED anode connection
 int ledPlayer1 = 5; 
 int ledPlayer2 = 6;
+int ledPlayer3 = 11;
+int ledPlayer4 = 10;
 int button1 = 4;
 int button2 = 3;
+int button3 = 13;
+int button4 = 12;
 int state2 = 0;
 int state1 = 0;
 int ledWait = 5000;  //Wiat time will be a minimum of 5 seconds
@@ -13,8 +17,12 @@ void setup() {
   pinMode(ledGameLight, OUTPUT); 
   pinMode(ledPlayer1, OUTPUT);
   pinMode(ledPlayer2, OUTPUT);
+  pinMode(ledPlayer3, OUTPUT);
+  pinMode(ledPlayer4, OUTPUT);
   pinMode(button1, INPUT);
   pinMode(button2, INPUT);
+  pinMode(button3, INPUT);
+  pinMode(button4, INPUT);
   randomSeed(analogRead(1));  // use Analog Pin 1 to generate a random number
 }
 
@@ -24,6 +32,8 @@ void loop() {
   if (state2 == HIGH) {  // Check if the pushbutton is pressed
     digitalWrite(ledPlayer1, LOW);  //Turn LED 1 off;
     digitalWrite(ledPlayer2, LOW);  //Turn LED 2 off;
+    digitalWrite(ledPlayer3, LOW);  //Turn LED 3 off;
+    digitalWrite(ledPlayer4, LOW);  //Turn LED 4 off;
     delay (2000);
     beginGame();
   }
@@ -31,6 +41,8 @@ void loop() {
     // turn LED on:
     digitalWrite(ledPlayer1, HIGH); // Turn LED 1 on
     digitalWrite(ledPlayer2, HIGH); // Turn LED 2 on
+    digitalWrite(ledPlayer3, HIGH); // Turn LED 3 on
+    digitalWrite(ledPlayer4, HIGH); // Turn LED 4 on
   }
 }
 
