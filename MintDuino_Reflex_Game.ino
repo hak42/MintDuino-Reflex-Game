@@ -72,38 +72,141 @@ void beginGame(){  // Only called when the button state is HIGH (pressed)
     //determine which player button was pressed first
     int button1State = digitalRead(button1);
     int button2State = digitalRead(button2);
+    int button3State = digitalRead(button3);
+    int button4State = digitalRead(button4);
     
-    if (button1State != button2State) {
-      delay(5); // pause, then take another reading
-      if (button1State == HIGH && digitalRead(button1) == HIGH) {
-        Player1Win();
-        gameOver = 1;
-      }
-      
-      if (button2State == HIGH && digitalRead(button2) == HIGH) {
-        Player2Win();
-        gameOver = 1;
-      }
-    }
-    else {
-      if (button1State == HIGH && button2State == HIGH) {
-        // tie
-        itsATie();
-        gameOver = 1;
-      }
+    if (button1State == HIGH && 
+        button2State == LOW && 
+        button3State == LOW &&
+        button4State == LOW) {
+      Player1Win();
+      gameOver = 1;
     }
     
+    if (button1State == LOW && 
+        button2State == HIGH && 
+        button3State == LOW &&
+        button4State == LOW) {
+      Player2Win();
+      gameOver = 1;
+    }
+    
+    if (button1State == LOW && 
+        button2State == LOW && 
+        button3State == HIGH &&
+        button4State == LOW) {
+      Player3Win();
+      gameOver = 1;
+    }
+    
+    if (button1State == LOW && 
+        button2State == LOW && 
+        button3State == LOW &&
+        button4State == HIGH) {
+      Player4Win();
+      gameOver = 1;
+    }
+    
+    if (button1State == HIGH && 
+        button2State == HIGH && 
+        button3State == LOW &&
+        button4State == LOW) {
+      itsATie12();
+      gameOver = 1;
+    }
+    
+    if (button1State == HIGH && 
+        button2State == LOW && 
+        button3State == HIGH &&
+        button4State == LOW) {
+      itsATie13();
+      gameOver = 1;
+    }
+    
+    if (button1State == HIGH && 
+        button2State == LOW && 
+        button3State == LOW &&
+        button4State == HIGH) {
+      itsATie14();
+      gameOver = 1;
+    }
+    
+    if (button1State == LOW && 
+        button2State == HIGH && 
+        button3State == HIGH &&
+        button4State == LOW) {
+      itsATie23();
+      gameOver = 1;
+    }
+    
+    if (button1State == LOW && 
+        button2State == HIGH && 
+        button3State == LOW &&
+        button4State == HIGH) {
+      itsATie24();
+      gameOver = 1;
+    }
+    
+    if (button1State == LOW && 
+        button2State == LOW && 
+        button3State == HIGH &&
+        button4State == HIGH) {
+      itsATie34();
+      gameOver = 1;
+    }
+    
+    if (button1State == HIGH && 
+        button2State == HIGH && 
+        button3State == HIGH &&
+        button4State == LOW) {
+      itsATie123();
+      gameOver = 1;
+    }
+    
+    if (button1State == HIGH && 
+        button2State == HIGH && 
+        button3State == LOW &&
+        button4State == HIGH) {
+      itsATie124();
+      gameOver = 1;
+    }
+    
+    if (button1State == LOW && 
+        button2State == HIGH && 
+        button3State == HIGH &&
+        button4State == HIGH) {
+      itsATie234();
+      gameOver = 1;
+    }
+    
+    if (button1State == HIGH && 
+        button2State == HIGH && 
+        button3State == LOW &&
+        button4State == HIGH) {
+      itsATie134();
+      gameOver = 1;
+    }
+    
+    if (button1State == HIGH && 
+        button2State == HIGH && 
+        button3State == HIGH &&
+        button4State == HIGH) {
+      itsATie1234();
+      gameOver = 1;
+    }
   }
   
   // Start game over
   
 }
 
-// Tie
-void itsATie() {
+// Ties
+void itsATie12() {
   for (int i = 0; i < 3; i++) {
     digitalWrite(ledPlayer1, HIGH);
     digitalWrite(ledPlayer2, HIGH);
+    digitalWrite(ledPlayer3, LOW);
+    digitalWrite(ledPlayer4, LOW);
     delay(250);
     digitalWrite(ledPlayer1, LOW);
     digitalWrite(ledPlayer2, LOW);
@@ -111,19 +214,183 @@ void itsATie() {
   }
 }
 
+void itsATie13() {
+  for (int i = 0; i < 3; i++) {
+    digitalWrite(ledPlayer1, HIGH);
+    digitalWrite(ledPlayer2, LOW);
+    digitalWrite(ledPlayer3, HIGH);
+    digitalWrite(ledPlayer4, LOW);
+    delay(250);
+    digitalWrite(ledPlayer1, LOW);
+    digitalWrite(ledPlayer3, LOW);
+    delay(250);
+  }
+}
+
+void itsATie14() {
+  for (int i = 0; i < 3; i++) {
+    digitalWrite(ledPlayer1, HIGH);
+    digitalWrite(ledPlayer2, LOW);
+    digitalWrite(ledPlayer3, LOW);
+    digitalWrite(ledPlayer4, HIGH);
+    delay(250);
+    digitalWrite(ledPlayer1, LOW);
+    digitalWrite(ledPlayer4, LOW);
+    delay(250);
+  }
+}
+
+void itsATie23() {
+  for (int i = 0; i < 3; i++) {
+    digitalWrite(ledPlayer1, LOW);
+    digitalWrite(ledPlayer2, HIGH);
+    digitalWrite(ledPlayer3, HIGH);
+    digitalWrite(ledPlayer4, LOW);
+    delay(250);
+    digitalWrite(ledPlayer2, LOW);
+    digitalWrite(ledPlayer3, LOW);
+    delay(250);
+  }
+}
+
+void itsATie24() {
+  for (int i = 0; i < 3; i++) {
+    digitalWrite(ledPlayer1, LOW);
+    digitalWrite(ledPlayer2, HIGH);
+    digitalWrite(ledPlayer3, LOW);
+    digitalWrite(ledPlayer4, HIGH);
+    delay(250);
+    digitalWrite(ledPlayer2, LOW);
+    digitalWrite(ledPlayer4, LOW);
+    delay(250);
+  }
+}
+
+void itsATie34() {
+  for (int i = 0; i < 3; i++) {
+    digitalWrite(ledPlayer1, LOW);
+    digitalWrite(ledPlayer2, LOW);
+    digitalWrite(ledPlayer3, HIGH);
+    digitalWrite(ledPlayer4, HIGH);
+    delay(250);
+    digitalWrite(ledPlayer3, LOW);
+    digitalWrite(ledPlayer4, LOW);
+    delay(250);
+  }
+}
+
+void itsATie123() {
+  for (int i = 0; i < 3; i++) {
+    digitalWrite(ledPlayer1, HIGH);
+    digitalWrite(ledPlayer2, HIGH);
+    digitalWrite(ledPlayer3, HIGH);
+    digitalWrite(ledPlayer4, LOW);
+    delay(250);
+    digitalWrite(ledPlayer1, LOW);
+    digitalWrite(ledPlayer2, LOW);
+    digitalWrite(ledPlayer3, LOW);
+    delay(250);
+  }
+}
+
+void itsATie124() {
+  for (int i = 0; i < 3; i++) {
+    digitalWrite(ledPlayer1, HIGH);
+    digitalWrite(ledPlayer2, HIGH);
+    digitalWrite(ledPlayer3, LOW);
+    digitalWrite(ledPlayer4, HIGH);
+    delay(250);
+    digitalWrite(ledPlayer1, LOW);
+    digitalWrite(ledPlayer2, LOW);
+    digitalWrite(ledPlayer4, LOW);
+    delay(250);
+  }
+}
+
+void itsATie234() {
+  for (int i = 0; i < 3; i++) {
+    digitalWrite(ledPlayer1, LOW);
+    digitalWrite(ledPlayer2, HIGH);
+    digitalWrite(ledPlayer3, HIGH);
+    digitalWrite(ledPlayer4, HIGH);
+    delay(250);
+    digitalWrite(ledPlayer2, LOW);
+    digitalWrite(ledPlayer3, LOW);
+    digitalWrite(ledPlayer4, LOW);
+    delay(250);
+  }
+}
+
+void itsATie134() {
+  for (int i = 0; i < 3; i++) {
+    digitalWrite(ledPlayer1, HIGH);
+    digitalWrite(ledPlayer2, LOW);
+    digitalWrite(ledPlayer3, HIGH);
+    digitalWrite(ledPlayer4, HIGH);
+    delay(250);
+    digitalWrite(ledPlayer1, LOW);
+    digitalWrite(ledPlayer3, LOW);
+    digitalWrite(ledPlayer4, LOW);
+    delay(250);
+  }
+}
+
+void itsATie1234() {
+  for (int i = 0; i < 3; i++) {
+    digitalWrite(ledPlayer1, HIGH);
+    digitalWrite(ledPlayer2, HIGH);
+    digitalWrite(ledPlayer3, HIGH);
+    digitalWrite(ledPlayer4, HIGH);
+    delay(250);
+    digitalWrite(ledPlayer1, LOW);
+    digitalWrite(ledPlayer2, LOW);
+    digitalWrite(ledPlayer3, LOW);
+    digitalWrite(ledPlayer4, LOW);
+    delay(250);
+  }
+}
+
+
+
+
 // Player 1 won, light their LED
 void Player1Win() {
   digitalWrite(ledPlayer1, HIGH);
   digitalWrite(ledPlayer2, LOW);
+  digitalWrite(ledPlayer3, LOW);
+  digitalWrite(ledPlayer4, LOW);
   delay(4000);
   digitalWrite(ledPlayer1, LOW);
 }
 
 // Player 2 won, light their LED
 void Player2Win() {
-  digitalWrite(ledPlayer2, HIGH);
   digitalWrite(ledPlayer1, LOW);
+  digitalWrite(ledPlayer2, HIGH);
+  digitalWrite(ledPlayer3, LOW);
+  digitalWrite(ledPlayer4, LOW);
   delay(4000);
   digitalWrite(ledPlayer2, LOW);
 }
+
+// Player 3 won, light their LED
+void Player3Win() {
+  digitalWrite(ledPlayer1, LOW);
+  digitalWrite(ledPlayer2, LOW);
+  digitalWrite(ledPlayer3, HIGH);
+  digitalWrite(ledPlayer4, LOW);
+  delay(4000);
+  digitalWrite(ledPlayer3, LOW);
+}
+
+// Player 4 won, light their LED
+void Player4Win() {
+  digitalWrite(ledPlayer1, LOW);
+  digitalWrite(ledPlayer2, LOW);
+  digitalWrite(ledPlayer3, LOW);
+  digitalWrite(ledPlayer4, HIGH);
+  delay(4000);
+  digitalWrite(ledPlayer4, LOW);
+}
+
 
